@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GST Calculator in JavaScript</title>
+    <style>
+        body {
+            background-image: url('https://media.giphy.com/media/pOEbLRT4SwD35IELiQ/giphy.gif'); /* Replace 'your-background.gif' with the actual path to your GIF file */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background to the table */
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        input, select {
+            width: 100%;
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+        }
+  .btn {
+      display: inline-block;
+      background-color: GRAY;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Counter</th>
+                <th>Event Name</th>
+                <th>Participants</th>
+                <th>Amount</th>
+                <th>GST (%)</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody id="productTable">
+            <!-- Rows will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <button onclick="addProductRow()">Add Product</button>
+
+    <script>
+        let counter = 0;
+
+        function addProductRow() {
+            counter++;
+            const tableBody = document.querySelector("#productTable");
+
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${counter}</td>
+                <td class="record">
+                    <select name="eventName" class="w3-input w3-border">
+                <option value="none">none</option>
+               <option value="robo games">Robo games</option>
+               <option value="coding">Coding</option>
+               <option value="face paint">Face paint</option>
+               <option value="mobile app">Mobile app</option>
+               <option value="short film">Short film</option>
+               <option value="forensic">Forensic</option>
+               <option value="itquiz">It quiz</option>
+               <option value="Gaming">Gaming</option>
+                    </select>
+                </td>
+                <td><input class="w3-input w3-border" name="qty" id="qty" type="number" oninput="calculateTotal(this)"></td>
+                <td><input class="w3-input w3-border" name="amount" id="amount" type="number" oninput="calculateTotal(this)"></td>
+                <td><input class="w3-input w3-border" name="gstRate" id="gstRate" type="number" oninput="calculateTotal(this)"></td>
+                <td><input class="w3-input w3-border" name="tot_amount" readonly id="tot_amount" type="text"></td>
+            `;
+
+            tableBody.appendChild(row);
+        }
+
+        function calculateTotal(input) {
+            const row = input.closest("tr");
+            const qty = parseFloat(row.querySelector("#qty").value);
+            const amount = parseFloat(row.querySelector("#amount").value);
+            const gstRate = parseFloat(row.querySelector("#gstRate").value);
+
+            // Calculate the GST amount
+            const gstAmount = (amount * gstRate) / 100;
+
+            // Calculate the total amount including GST
+            const totalAmount = amount + gstAmount;
+
+            row.querySelector("#tot_amount").value = totalAmount.toFixed(2);
+        }
+    </script>
+ <a href="#" onclick="history.back();" class="btn">Go Back</a>
+  <a href="assignment.html"></a>
+
+</body>
+</html>
+

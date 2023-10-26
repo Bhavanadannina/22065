@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration | Technical Event 2023</title>
+  <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image:url('https://media.giphy.com/media/pOEbLRT4SwD35IELiQ/giphy.gif');
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .success-message {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .funny-image {
+            max-width: 100%;
+        }
+       h2{
+           text-align: center;
+            font-size: 45px;
+        }
+   .btn {
+      display: inline-block;
+      background-color: blue;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+        .captcha-container {
+            margin-top: 20px;
+        }
+
+        #captcha-text {
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #f0f0f0;
+            padding: 5px;
+            border: 1px solid #ccc;
+            display: inline-block;
+        }
+
+        #generate-captcha-link {
+            margin-left: 10px;
+            text-decoration: none;
+            color: blue;
+            cursor: pointer;
+        }
+
+        #generate-captcha-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="registration-form" onsubmit="showSuccess(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="RollNumber">Roll Number:</label>
+            <input type="text" id="RollNumber" name="RollNumber" required>
+
+            <label for="department">Department:</label>
+            <select id="department" name="department">
+              <option value="CSE">CSE</option>
+              <option value="AIE">AIE</option>
+              <option value="CYS">CYS</option>
+              <option value="CCE">CCE</option>
+              <option value="ECE">ECE</option>
+              <option value="EEE">EEE</option>
+              <option value="MECH">MECH</option>
+              <option value="ARE">ARE</option>
+              <option value="CIVIL">CIVIL</option>
+            </select>
+
+            <label for="campus">Campus:</label>
+            <select id="campus" name="campus">
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Amritapuri">Amritapuri</option>
+              <option value="Bengalore">Banglore</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Amaravati">Amaravati</option>
+            </select>
+
+            <label for="phoneno">ContactNumber:</label>
+            <input type="text" id="number" name="number" required>
+
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Adress:</label>
+            <input type="address" id="address" name="address" required>
+
+            <label for="state">State:</label>
+            <input type="state" id="state" name="state">
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            
+
+            <label for="events">Event:</label>
+            <select id="event" name="event">
+               <option value="robo games">Robo games</option>
+               <option value="coding">Coding</option>
+               <option value="face paint">Face paint</option>
+               <option value="mobile app">Mobile app</option>
+               <option value="short film">Short film</option>
+               <option value="forensic">Forensic</option>
+               <option value="itquiz">It quiz</option>
+               <option value="Gaming">Gaming</option>
+             </select>
+
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+    <div class="captcha-container">
+        <label for="captcha">CAPTCHA:</label>
+        <span id="captcha-text">Generate a CAPTCHA here</span>
+        <a href="#" id="generate-captcha-link" onclick="generateCaptcha()">Generate CAPTCHA</a>
+        <input type="text" id="captcha" name="captcha" required>
+    </div>
+
+    <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div class="success-message" id="success-message" style="display: none;">
+        <h2>Registration Successful!</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVWO6rffRiOhLVBU0l0Z5Q1-PCOzU9m2l0jzyF0_y64t4rcK1nP7bw1Ej4i0cgGfUHJkI&usqp=CAU" alt="Funny Image" class="funny-image">
+    </div>
+  <a href="#" onclick="history.back();" class="btn">Go Back</a>
+  <a href="assignment.html"></a>
+
+ <script>
+        function generateCaptcha() {
+            var captchaText = generateRandomText(); // Function to generate random text
+            document.getElementById('captcha-text').textContent = captchaText;
+        }
+
+        function generateRandomText() {
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var captchaText = '';
+            var length = 6; // Adjust the length of the CAPTCHA text as needed
+
+            for (var i = 0; i < length; i++) {
+                var randomIndex = Math.floor(Math.random() * characters.length);
+                captchaText += characters.charAt(randomIndex);
+            }
+
+            return captchaText;
+        }
+
+        function validateCaptcha() {
+            var captchaInput = document.getElementById('captcha').value;
+            var captchaText = document.getElementById('captcha-text').textContent;
+
+            if (captchaInput.toLowerCase() === captchaText.toLowerCase()) {
+                // CAPTCHA is correct, continue with form submission.
+                document.getElementById('success-message').style.display = 'block';
+                return true;
+            } else {
+                alert('CAPTCHA is incorrect. Please try again.');
+                return false;
+            }
+        }
+    </script>
+<footer>
+    <p>&copy; 2023 Technical Event | Contact: info@technicalevent.com</p>
+  </footer>
+</body>
+</html>
